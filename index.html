@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan RRSS 2026 · Smileat</title>
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#00a2e1;
+    --blue-mid:#0489bd;
+    --blue-deep:#053b4d;
+    --blue-pale:#eaf7fd;
+    --blue-pale-2:#d5f0fa;
+    --white:#ffffff;
+    --line:#c9e8f3;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--white);
+    color:var(--blue-deep);
+    font-family:'Montserrat',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Nunito',sans-serif;
+    font-weight:800;
+    margin:0;
+    color:var(--blue-deep);
+  }
+  p{margin:0;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  img{max-width:100%;display:block;}
+
+  /* Skip link for keyboard users */
+  .skip-link{position:absolute;left:-999px;top:auto;background:var(--blue);color:var(--white);padding:10px 16px;border-radius:0 0 10px 0;z-index:100;}
+  .skip-link:focus{left:0;top:0;}
+
+  :focus-visible{outline:3px solid var(--blue-mid);outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  header.site-nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw);margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+  }
+  .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .nav-brand img{height:28px;width:auto;}
+  nav.nav-links{display:flex;gap:6px;flex-wrap:wrap;}
+  nav.nav-links a{
+    font-family:'Montserrat',sans-serif;font-weight:600;font-size:0.86rem;
+    text-decoration:none;color:var(--blue-deep);
+    padding:8px 14px;border-radius:999px;
+    transition:background .15s ease, color .15s ease;
+    white-space:nowrap;
+  }
+  nav.nav-links a:hover{background:var(--blue-pale);}
+  .nav-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:72px 0 56px;}
+  .hero-inner{display:flex;flex-direction:column;align-items:flex-start;gap:26px;}
+  .hero img.logo{width:220px;height:auto;}
+  .hero h1{font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.06;max-width:14ch;}
+  .hero .lede{
+    font-family:'Montserrat',sans-serif;font-size:1.1rem;color:var(--blue-mid);
+    font-weight:500;max-width:52ch;
+  }
+  .stat-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;}
+  .pill-stat{
+    background:var(--blue);color:var(--white);
+    border-radius:999px;padding:14px 24px 14px 24px;
+    display:flex;flex-direction:column;gap:2px;min-width:150px;
+  }
+  .pill-stat b{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.5rem;}
+  .pill-stat span{font-size:0.78rem;font-weight:600;letter-spacing:.01em;opacity:.92;}
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{padding:64px 0;}
+  section.tint{background:var(--blue-pale);}
+  .section-head{max-width:62ch;margin-bottom:38px;}
+  .section-head h2{font-size:clamp(1.6rem,3vw,2.15rem);}
+  .section-head .kicker{
+    display:block;color:var(--blue-mid);font-weight:700;font-size:0.95rem;margin-bottom:8px;
+    font-family:'Montserrat',sans-serif;
+  }
+  .section-head p.desc{margin-top:12px;color:var(--blue-mid);font-size:1rem;}
+
+  /* ---------- BUYER PERSONA ---------- */
+  .persona-grid{display:grid;grid-template-columns:1.1fr 1.6fr;gap:44px;align-items:center;}
+  .persona-badge{
+    background:var(--blue);border-radius:32px 32px 32px 6px;
+    padding:38px 30px;color:var(--white);
+  }
+  .persona-badge h3{color:var(--white);font-size:1.5rem;}
+  .persona-badge .age{font-family:'Nunito',sans-serif;font-weight:900;font-size:2.6rem;display:block;margin-top:6px;}
+  .persona-list{display:grid;gap:14px;}
+  .persona-list li{list-style:none;display:flex;gap:14px;align-items:flex-start;padding:14px 18px;background:var(--white);border:1px solid var(--line);border-radius:14px;}
+  .persona-list li .dot{width:9px;height:9px;border-radius:50%;background:var(--blue);margin-top:7px;flex-shrink:0;}
+  .persona-list{margin:0;padding:0;}
+
+  /* ---------- OBJETIVOS ---------- */
+  .obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .obj-card{border:1px solid var(--line);border-radius:22px;padding:32px;background:var(--white);}
+  .obj-card h3{font-size:1.15rem;margin-bottom:4px;}
+  .obj-card .period{color:var(--blue-mid);font-weight:600;font-size:0.85rem;margin-bottom:20px;display:block;}
+  .obj-metrics{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .obj-metrics .m{padding:16px;background:var(--blue-pale);border-radius:14px;}
+  .obj-metrics .m b{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue);display:block;}
+  .obj-metrics .m span{font-size:0.78rem;font-weight:600;color:var(--blue-deep);}
+
+  /* ---------- TENDENCIAS ---------- */
+  .trend-row{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .trend-card{
+    position:relative;background:var(--white);border:1px solid var(--line);
+    border-radius:20px 20px 20px 4px;padding:26px 24px;
+  }
+  .trend-card h4{font-size:1.05rem;margin-bottom:8px;}
+  .trend-card p{font-size:0.92rem;color:var(--blue-mid);}
+
+  /* ---------- PLATFORM TABS ---------- */
+  .platform-block{margin-bottom:56px;}
+  .platform-block:last-child{margin-bottom:0;}
+  .platform-title{display:flex;align-items:baseline;gap:12px;margin-bottom:22px;}
+  .platform-title h3{font-size:1.4rem;}
+  .platform-title .pf-tag{
+    font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.75rem;
+    color:var(--blue);background:var(--blue-pale-2);padding:4px 12px;border-radius:999px;
+  }
+  .audience-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:26px;}
+  .audience-stats .a-stat{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:18px;}
+  .audience-stats .a-stat b{font-family:'Nunito',sans-serif;font-weight:900;color:var(--blue-deep);font-size:1.3rem;display:block;}
+  .audience-stats .a-stat span{font-size:0.78rem;color:var(--blue-mid);font-weight:600;}
+  .value-prop{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .vp-card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:24px;}
+  .vp-card h5{font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;margin-bottom:4px;}
+  .vp-card .freq{font-size:0.82rem;color:var(--blue-mid);font-weight:600;margin-bottom:14px;display:block;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{background:var(--blue-pale);color:var(--blue-deep);font-size:0.8rem;font-weight:600;padding:6px 13px;border-radius:999px;}
+
+  /* ---------- INFLUENCERS ---------- */
+  .influencer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  .inf-card{
+    border:1px solid var(--line);border-radius:22px;padding:28px;background:var(--white);
+    display:flex;flex-direction:column;gap:16px;
+  }
+  .inf-card.tbd{background:var(--blue-pale);border-style:dashed;}
+  .inf-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+  .inf-head h4{font-size:1.2rem;}
+  .inf-head .fee{
+    font-family:'Nunito',sans-serif;font-weight:900;color:var(--blue);font-size:1.05rem;
+    white-space:nowrap;
+  }
+  .inf-meta{font-size:0.82rem;color:var(--blue-mid);font-weight:600;}
+  .inf-card ul{margin:0;padding-left:18px;font-size:0.9rem;}
+  .inf-card ul li{margin-bottom:4px;}
+  .inf-goals{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;}
+
+  /* ---------- CALENDAR TABLE ---------- */
+  .cal-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:18px;overflow:hidden;border:1px solid var(--line);}
+  .cal-table th, .cal-table td{padding:14px 16px;text-align:left;font-size:0.86rem;border-bottom:1px solid var(--line);}
+  .cal-table th{background:var(--blue);color:var(--white);font-family:'Nunito',sans-serif;font-weight:800;font-size:0.82rem;}
+  .cal-table td:first-child{font-weight:700;color:var(--blue-deep);background:var(--blue-pale);}
+  .cal-table tr:last-child td{border-bottom:none;}
+  .table-scroll{overflow-x:auto;border-radius:18px;}
+
+  /* Launch timeline */
+  .launch-timeline{display:flex;gap:0;margin-top:36px;overflow-x:auto;padding-bottom:10px;}
+  .launch-stop{
+    flex:1;min-width:150px;text-align:center;position:relative;padding:0 10px 0 0;
+  }
+  .launch-stop .track{height:4px;background:var(--blue);position:relative;margin-bottom:14px;}
+  .launch-stop .track::after{
+    content:"";position:absolute;right:0;top:50%;transform:translate(50%,-50%);
+    width:14px;height:14px;border-radius:50%;background:var(--blue);border:3px solid var(--white);box-shadow:0 0 0 2px var(--blue);
+  }
+  .launch-stop:first-child .track{border-radius:4px 0 0 4px;}
+  .launch-stop .month{font-size:0.75rem;font-weight:700;color:var(--blue-mid);text-transform:none;}
+  .launch-stop .name{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.95rem;margin-top:2px;}
+
+  /* ---------- GEO / COMPETENCIA ---------- */
+  .geo-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;}
+  .geo-card{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:30px;}
+  .geo-card h4{font-size:1.1rem;margin-bottom:18px;}
+  .geo-group{margin-bottom:18px;}
+  .geo-group:last-child{margin-bottom:0;}
+  .geo-group span.label{display:block;font-size:0.78rem;font-weight:700;color:var(--blue-mid);margin-bottom:9px;}
+  .city-pill{
+    display:inline-flex;align-items:center;gap:7px;background:var(--blue-pale);
+    border-radius:999px;padding:7px 14px;font-size:0.85rem;font-weight:600;margin:0 8px 8px 0;
+  }
+  .city-pill.solid{background:var(--blue);color:var(--white);}
+  .note{
+    margin-top:30px;padding:18px 22px;background:var(--blue-pale);border-radius:14px;
+    font-size:0.88rem;color:var(--blue-mid);max-width:74ch;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:44px 0;border-top:1px solid var(--line);}
+  .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  .footer-inner img{height:22px;}
+  footer p{font-size:0.82rem;color:var(--blue-mid);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    nav.nav-links{display:none;}
+    .nav-toggle{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--white);}
+    .nav-toggle svg{width:20px;height:20px;}
+    header.site-nav.open nav.nav-links{
+      display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;
+      background:var(--white);padding:12px 28px 20px;border-bottom:1px solid var(--line);
+    }
+    .persona-grid, .obj-grid, .value-prop, .influencer-grid, .geo-grid{grid-template-columns:1fr;}
+    .trend-row{grid-template-columns:1fr;}
+    .audience-stats{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Ir al contenido</a>
+
+<header class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top" aria-label="Inicio">
+      <img src="assets/logo.png" alt="Smileat">
+    </a>
+    <nav class="nav-links" aria-label="Navegación principal">
+      <a href="#publico">Público objetivo</a>
+      <a href="#objetivos">Objetivos</a>
+      <a href="#organica">Estrategia orgánica</a>
+      <a href="#influencers">Influencers</a>
+      <a href="#calendario">Calendario</a>
+      <a href="#competencia">Competencia por regiones</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#053b4d" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap hero-inner">
+      <img class="logo" src="assets/logo.png" alt="Smileat — alimentación infantil ecológica">
+      <h1>Plan de redes sociales 2026</h1>
+      <p class="lede">Estrategia de contenido orgánico, influencers y presencia geográfica para acompañar a las familias que buscan alimentación infantil ecológica, de enero a julio de 2026.</p>
+      <div class="stat-row">
+        <div class="pill-stat"><b>+7.500</b><span>seguidores nuevos</span></div>
+        <div class="pill-stat"><b>3M</b><span>reach orgánico</span></div>
+        <div class="pill-stat"><b>9%</b><span>engagement</span></div>
+        <div class="pill-stat"><b>700K</b><span>alcance con influencers</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICO OBJETIVO -->
+  <section id="publico" class="tint">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Público objetivo</span>
+        <h2>A quién le hablamos</h2>
+        <p class="desc">El buyer persona que guía cada pieza de contenido en redes.</p>
+      </div>
+      <div class="persona-grid">
+        <div class="persona-badge">
+          <h3>Mujer</h3>
+          <span class="age">25–45</span>
+          <p style="margin-top:8px;font-size:0.9rem;opacity:.9;">Madre con poco tiempo libre para decidir</p>
+        </div>
+        <ul class="persona-list">
+          <li><span class="dot"></span><p>Tiene poco tiempo para investigar cada compra: valora la información clara y rápida.</p></li>
+          <li><span class="dot"></span><p>Está preocupada por la salud y la calidad de los productos que da a su familia.</p></li>
+          <li><span class="dot"></span><p>Compra varias marcas a la vez, según los gustos del peque, la disponibilidad y el precio: la fidelidad se gana en cada compra.</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- OBJETIVOS -->
+  <section id="objetivos">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Objetivos enero–junio</span>
+        <h2>Lo que queremos conseguir</h2>
+      </div>
+      <div class="obj-grid">
+        <div class="obj-card">
+          <h3>Contenido orgánico</h3>
+          <span class="period">Ene · Jun 2026</span>
+          <div class="obj-metrics">
+            <div class="m"><b>+7.500</b><span>seguidores nuevos</span></div>
+            <div class="m"><b>3M</b><span>reach</span></div>
+            <div class="m"><b>9%</b><span>engagement</span></div>
+          </div>
+        </div>
+        <div class="obj-card">
+          <h3>Influencers</h3>
+          <span class="period">Ene · Jun 2026 · Presupuesto 30.000€</span>
+          <div class="obj-metrics">
+            <div class="m"><b>700K</b><span>alcance</span></div>
+            <div class="m"><b>1</b><span>lanzamiento de éxito</span></div>
+            <div class="m"><b>2</b><span>colabs por campaña</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TENDENCIAS -->
+  <section class="tint">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Contexto</span>
+        <h2>Tendencias que marcan el contenido</h2>
+      </div>
+      <div class="trend-row">
+        <div class="trend-card">
+          <h4>Chaos culture</h4>
+          <p>Contenidos menos pulidos y más espontáneos, con el humor como protagonista.</p>
+        </div>
+        <div class="trend-card">
+          <h4>Empatía y nostalgia</h4>
+          <p>Marcas humanizadas como gancho emocional: fundadores, empleados y creadores como cara visible.</p>
+        </div>
+        <div class="trend-card">
+          <h4>Cercanía real</h4>
+          <p>Menos producción y más autenticidad: lo imperfecto conecta más que lo perfecto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESTRATEGIA ORGANICA -->
+  <section id="organica">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Estrategia orgánica</span>
+        <h2>Instagram y TikTok</h2>
+        <p class="desc">Datos de audiencia actuales y propuesta de contenido por plataforma.</p>
+      </div>
+
+      <!-- Instagram -->
+      <div class="platform-block">
+        <div class="platform-title">
+          <h3>Instagram</h3>
+          <span class="pf-tag">122k seguidores</span>
+        </div>
+        <div class="audience-stats">
+          <div class="a-stat"><b>95,3%</b><span>Mujeres · 4,7% hombres</span></div>
+          <div class="a-stat"><b>60,2%</b><span>35–44 años</span></div>
+          <div class="a-stat"><b>39,6%</b><span>25–34 años</span></div>
+          <div class="a-stat"><b>8,4%</b><span>Madrid, región principal</span></div>
+        </div>
+        <div class="value-prop">
+          <div class="vp-card">
+            <h5>Feed</h5>
+            <span class="freq">3 veces por semana · ~12 al mes</span>
+            <div class="chip-row">
+              <span class="chip">Lanzamientos</span><span class="chip">Campañas</span><span class="chip">Maternidad</span>
+              <span class="chip">Divulgación</span><span class="chip">Recetas</span><span class="chip">Producto</span>
+              <span class="chip">Podcast</span><span class="chip">Equipo</span><span class="chip">Colabs influencers</span><span class="chip">Colabs marcas</span>
+            </div>
+          </div>
+          <div class="vp-card">
+            <h5>Stories</h5>
+            <span class="freq">Todos los días</span>
+            <div class="chip-row">
+              <span class="chip">Producto</span><span class="chip">Códigos</span>
+              <span class="chip">Compartidos de influencers</span><span class="chip">Promos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TikTok -->
+      <div class="platform-block">
+        <div class="platform-title">
+          <h3>TikTok</h3>
+          <span class="pf-tag">4,8k seguidores</span>
+        </div>
+        <div class="audience-stats">
+          <div class="a-stat"><b>73%</b><span>Mujeres · 27% hombres</span></div>
+          <div class="a-stat"><b>45,8%</b><span>25–34 años</span></div>
+          <div class="a-stat"><b>35,7%</b><span>35–44 años</span></div>
+          <div class="a-stat"><b>17,3%</b><span>Madrid, región principal</span></div>
+        </div>
+        <div class="value-prop">
+          <div class="vp-card">
+            <h5>Feed</h5>
+            <span class="freq">4 veces por semana</span>
+            <div class="chip-row">
+              <span class="chip">Lanzamientos</span><span class="chip">Campañas</span><span class="chip">Podcast</span>
+              <span class="chip">Divulgación</span><span class="chip">Recetas</span><span class="chip">Producto</span>
+              <span class="chip">Maternidad</span><span class="chip">Equipo</span>
+            </div>
+          </div>
+          <div class="vp-card">
+            <h5>Stories</h5>
+            <span class="freq">Todos los días</span>
+            <div class="chip-row">
+              <span class="chip">Producto</span><span class="chip">Promos</span><span class="chip">Podcast</span>
+              <span class="chip">Lanzamientos</span><span class="chip">Campañas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFLUENCERS -->
+  <section id="influencers" class="tint">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Estrategia de influencers</span>
+        <h2>Colaboraciones 2026</h2>
+        <p class="desc">Cuatro perfiles seleccionados para acompañar los lanzamientos y campañas del semestre.</p>
+      </div>
+      <div class="influencer-grid">
+        <div class="inf-card">
+          <div class="inf-head">
+            <h4>Juan Llorca</h4>
+            <span class="fee">6.500€</span>
+          </div>
+          <span class="inf-meta">Valencia · Marzo, mayo, julio y septiembre</span>
+          <ul>
+            <li>4 reels colaborativos + stories + publicidad</li>
+            <li>Platitos y gazpachito</li>
+            <li>Ideas de menú antes de verano y vuelta al cole</li>
+          </ul>
+          <div class="inf-goals">
+            <span class="chip">Alcance</span><span class="chip">Credibilidad</span><span class="chip">Acompañamiento</span>
+          </div>
+        </div>
+        <div class="inf-card">
+          <div class="inf-head">
+            <h4>Moderna de pueblo</h4>
+            <span class="fee">10.000€</span>
+          </div>
+          <span class="inf-meta">Abril y junio</span>
+          <ul>
+            <li>2 carruseles de viñetas + stories</li>
+            <li>"Tan real como tu peque"</li>
+            <li>"Tan real como tu peque 2.0"</li>
+          </ul>
+          <div class="inf-goals">
+            <span class="chip">Alcance</span><span class="chip">Viralidad</span>
+          </div>
+        </div>
+        <div class="inf-card">
+          <div class="inf-head">
+            <h4>Mario Marzo</h4>
+            <span class="fee">7.000€ +20% agencia</span>
+          </div>
+          <span class="inf-meta">Mayo</span>
+          <ul>
+            <li>1 reel colaborativo + stories</li>
+            <li>"Tan real como tu peque"</li>
+          </ul>
+          <div class="inf-goals">
+            <span class="chip">Alcance</span><span class="chip">Nueva audiencia</span><span class="chip">Viralidad</span>
+          </div>
+        </div>
+        <div class="inf-card tbd">
+          <div class="inf-head">
+            <h4>Influencer por confirmar</h4>
+          </div>
+          <span class="inf-meta">Julio</span>
+          <ul>
+            <li>Reel colaborativo + stories (por definir)</li>
+            <li>Carrusel + stories (por definir)</li>
+          </ul>
+          <div class="inf-goals">
+            <span class="chip">Alcance</span><span class="chip">Viralidad</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDARIO -->
+  <section id="calendario">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Planificación</span>
+        <h2>Calendario de acciones</h2>
+        <p class="desc">Campañas, lanzamientos, colaboraciones e influencers, mes a mes.</p>
+      </div>
+      <div class="table-scroll">
+        <table class="cal-table">
+          <thead>
+            <tr><th></th><th>Marzo</th><th>Abril</th><th>Mayo</th><th>Junio</th><th>Julio</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Campañas</td>
+              <td>Día del padre</td>
+              <td>Tan real como tu peque</td>
+              <td>Día de la madre</td>
+              <td>Tan real como tu peque 2.0</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Lanzamientos</td>
+              <td>Tarrito arándano</td>
+              <td>Gazpachito</td>
+              <td>Bipack</td>
+              <td>Snack Baby</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>Colaboraciones</td>
+              <td>Oli&amp;Carol</td>
+              <td>—</td>
+              <td>Gocco</td>
+              <td>Zapato Feroz</td>
+              <td>Freshly</td>
+            </tr>
+            <tr>
+              <td>Influencers</td>
+              <td>Juan Llorca</td>
+              <td>Moderna de pueblo</td>
+              <td>Mario Marzo, Juan Llorca</td>
+              <td>Moderna de pueblo</td>
+              <td>Colab a confirmar, Juan Llorca</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="launch-timeline">
+        <div class="launch-stop"><div class="track"></div><span class="month">Junio</span><div class="name">Platitos</div></div>
+        <div class="launch-stop"><div class="track"></div><span class="month">Julio</span><div class="name">Gazpachito</div></div>
+        <div class="launch-stop"><div class="track"></div><span class="month">Septiembre</span><div class="name">Bipack</div></div>
+        <div class="launch-stop"><div class="track"></div><span class="month">Noviembre</span><div class="name">Snack Baby</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPETENCIA / GEO -->
+  <section id="competencia" class="tint">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">Activación geográfica</span>
+        <h2>Presencia y foco por regiones</h2>
+        <p class="desc">Dónde tenemos hoy más fuerza y hacia dónde crecemos, en eventos, sampling e influencers.</p>
+      </div>
+      <div class="geo-grid">
+        <div class="geo-card">
+          <h4>Eventos y sampling</h4>
+          <div class="geo-group">
+            <span class="label">Mayor presencia actualmente</span>
+            <span class="city-pill solid">Madrid</span>
+            <span class="city-pill solid">Barcelona</span>
+          </div>
+          <div class="geo-group">
+            <span class="label">Foco de expansión</span>
+            <span class="city-pill">Valencia</span>
+            <span class="city-pill">Canarias</span>
+            <span class="city-pill">Málaga</span>
+          </div>
+        </div>
+        <div class="geo-card">
+          <h4>Influencers</h4>
+          <div class="geo-group">
+            <span class="label">Mayor presencia actualmente</span>
+            <span class="city-pill solid">Madrid</span>
+            <span class="city-pill solid">Barcelona</span>
+          </div>
+          <div class="geo-group">
+            <span class="label">En construcción de base de datos</span>
+            <span class="city-pill">Valencia</span>
+            <span class="city-pill">Canarias</span>
+            <span class="city-pill">Málaga</span>
+            <span class="city-pill">Galicia</span>
+            <span class="city-pill">País Vasco</span>
+          </div>
+        </div>
+      </div>
+      <p class="note">Nota: la presentación de origen recoge la actividad por regiones dentro de España, no una comparativa de competencia entre países. Si necesitas un análisis de competencia internacional por países, lo podemos añadir como una sección adicional con datos propios de cada mercado.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <img src="assets/logo.png" alt="Smileat">
+    <p>Plan RRSS 2026 · Alimentación infantil ecológica</p>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const nav = document.getElementById('siteNav');
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>
